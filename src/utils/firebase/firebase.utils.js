@@ -31,12 +31,16 @@ googleProvider.setCustomParameters({
 // Create an instance of authentication
 export const auth = getAuth();
 
+// Create a DB instance
+export const db = getFirestore();
+
 // Create a Google Authentication Popup
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-// Create a DB instance
-export const db = getFirestore();
+// Create a Google Authentication redirect page
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 // Save user in DB from Google Auth
 export const createUserDocumentFromAuth = async (userAuth) => {
