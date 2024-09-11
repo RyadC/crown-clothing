@@ -3,24 +3,27 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+import FormInput from "../form-input/form-input.component";
+
+const defaultFormFields = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Signup = () => {
-  const defaultFormFields = {
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-
   const [formFields, setFormFields] = useState(defaultFormFields);
+
+  const { displayName, email, password, confirmPassword } = formFields;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(e.target);
-
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
 
     if (password !== confirmPassword) {
       console.log(`${password} and ${confirmPassword} is not same`);
@@ -32,44 +35,66 @@ const Signup = () => {
       return;
     }
 
-    setFormFields({
-      displayName: formData.get("displayName"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-      confirmPassword: formData.get("confirmPassword"),
-    });
-
     try {
       const { user } = await createAuthUserWithEmailAndPassword(formFields);
       const userDocRefInst = createUserDocumentFromAuth(user, {
-        displayName: formFields.displayName,
+        displayName,
       });
     } catch (error) {
       console.error("saving user failed:", error.code, error.message);
     }
-
-    // console.dir(e.target);
   };
 
   return (
     <div>
       <h2>Sign up with your email and password</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="displayName">Name</label>
-        <input type="text" name="displayName" id="displayName" required />
+        <FormInput
+          label="Name"
+          inputOptions={{
+            onChange: handleChange,
+            type: "text",
+            name: "displayName",
+            id: "displayName",
+            value: displayName,
+            required: true,
+          }}
+        />
 
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required />
+        <FormInput
+          label="Email"
+          inputOptions={{
+            onChange: handleChange,
+            type: "email",
+            name: "email",
+            id: "email",
+            value: email,
+            required: true,
+          }}
+        />
 
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" required />
+        <FormInput
+          label="Password"
+          inputOptions={{
+            onChange: handleChange,
+            type: "password",
+            name: "password",
+            id: "password",
+            value: password,
+            required: true,
+          }}
+        />
 
-        <label htmlFor="confirmPassword">Confirm your password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          required
+        <FormInput
+          label="Confirm password"
+          inputOptions={{
+            onChange: handleChange,
+            type: "confirmPassword",
+            name: "confirmPassword",
+            id: "confirmPassword",
+            value: confirmPassword,
+            required: true,
+          }}
         />
 
         <button type="submit">Sign up</button>
