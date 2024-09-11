@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -42,6 +43,10 @@ export const signInWithGooglePopup = () =>
 // Create a Google Authentication redirect page
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
+
+// Create an Authentication with email and password
+export const signInAuthUserWithEmailAndPassword = (email, password) =>
+  signInWithEmailAndPassword(auth, email, password);
 
 // Save user in DB from Google Auth
 export const createUserDocumentFromAuth = async (

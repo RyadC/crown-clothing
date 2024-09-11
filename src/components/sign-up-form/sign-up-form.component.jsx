@@ -13,7 +13,7 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
-const Signup = () => {
+const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
@@ -41,6 +41,8 @@ const Signup = () => {
       const userDocRefInst = createUserDocumentFromAuth(user, {
         displayName,
       });
+
+      setFormFields(...defaultFormFields);
     } catch (error) {
       console.error("saving user failed:", error.code, error.message);
     }
@@ -48,7 +50,8 @@ const Signup = () => {
 
   return (
     <div className="sign-up-container">
-      <h2>Sign up with your email and password</h2>
+      <h2>I do not have an account</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Name"
@@ -104,4 +107,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignUpForm;
