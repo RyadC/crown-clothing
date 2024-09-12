@@ -39,9 +39,11 @@ const SignInForm = () => {
         email,
         password
       );
-      const userDocRefInst = await createUserDocumentFromAuth(user);
 
       setCurrentUser(user);
+      setFormFields({ ...defaultFormFields });
+
+      const userDocRefInst = await createUserDocumentFromAuth(user);
     } catch (err) {
       switch (err.code) {
         case "auth/wrong-password":

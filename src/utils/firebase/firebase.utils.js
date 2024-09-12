@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -40,15 +41,15 @@ export const db = getFirestore();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-// Create a Google Authentication redirect page
+// Create a Google Authentication redirect page (we dont use it)
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
-// Create an Authentication with email and password
+// Sign in the user with email and password (firebase)
 export const signInAuthUserWithEmailAndPassword = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 
-// Save user in DB from Google Auth
+// Save user in DB if is not exist (firestore)
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformations = {}
@@ -85,7 +86,7 @@ export const createUserDocumentFromAuth = async (
   return userDocRefInstance;
 };
 
-// Save user in DB from his email and password
+// Create a user auth object (firebase)
 export const createAuthUserWithEmailAndPassword = async ({
   email,
   password,
@@ -94,3 +95,6 @@ export const createAuthUserWithEmailAndPassword = async ({
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
+
+// Sign out the user (firebase)
+export const signOutUser = async () => await signOut(auth);
