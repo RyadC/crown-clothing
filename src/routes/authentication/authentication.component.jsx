@@ -2,15 +2,16 @@ import { useEffect } from "react";
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component.jsx";
 import SignInForm from "../../components/sign-in-form/sign-in-form.component.jsx";
+import "./authentication.styles.scss";
 
-const SignIn = () => {
+const Authentication = () => {
   return (
-    <div>
-      <h1>SignIn page</h1>
+    <div className="authentication-container">
+      {/* <h1>SignIn page</h1> */}
       <SignInForm />
       <SignUpForm />
     </div>
   );
 };
 
-export default SignIn;
+export default Authentication;
