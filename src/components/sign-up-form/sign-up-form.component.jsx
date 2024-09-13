@@ -46,7 +46,7 @@ const SignUpForm = () => {
         displayName,
       });
 
-      setCurrentUser(user);
+      // setCurrentUser(user);
       setFormFields(...defaultFormFields);
     } catch (error) {
       console.error("saving user failed:", error.code, error.message);

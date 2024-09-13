@@ -40,7 +40,7 @@ const SignInForm = () => {
         password
       );
 
-      setCurrentUser(user);
+      // setCurrentUser(user);
       setFormFields({ ...defaultFormFields });
 
       const userDocRefInst = await createUserDocumentFromAuth(user);
