@@ -9,13 +9,15 @@ import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 
 import "./navigation.styles.scss";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { CartContext } from "../../contexts/cart.context";
 
 const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { active } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
-    // setCurrentUser(null);
   };
 
   return (
@@ -41,6 +43,8 @@ const Navigation = () => {
           )}
 
           <CartIcon />
+
+          {active && <CartDropdown />}
         </div>
       </div>
       <Outlet />
