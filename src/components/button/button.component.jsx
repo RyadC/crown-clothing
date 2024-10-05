@@ -5,11 +5,11 @@ const BUTTON_TYPES_CLASSES = {
   inverted: "inverted",
 };
 
-const Button = ({ children, buttonType, addItemInCart }) => {
+const Button = ({ children, buttonType, ...otherProps }) => {
   return (
     <button
       className={`button-container ${BUTTON_TYPES_CLASSES[buttonType]}`}
-      onClick={addItemInCart}
+      {...otherProps}
     >
       {children}
     </button>
