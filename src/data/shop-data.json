@@ -1,56 +1,56 @@
 [
   {
     "id": 1,
-    "name": "Brown Brim",
-    "imageUrl": "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+    "name": "Gray Brim",
+    "imageUrl": "https://images.pexels.com/photos/2832037/pexels-photo-2832037.jpeg",
     "price": 25
   },
   {
     "id": 2,
-    "name": "Blue Beanie",
-    "imageUrl": "https://i.ibb.co/ypkgK0X/blue-beanie.png",
+    "name": "Brown Beanie",
+    "imageUrl": "https://images.pexels.com/photos/413960/pexels-photo-413960.jpeg",
     "price": 18
   },
   {
     "id": 3,
-    "name": "Brown Cowboy",
-    "imageUrl": "https://i.ibb.co/QdJwgmp/brown-cowboy.png",
+    "name": "Pink",
+    "imageUrl": "https://images.pexels.com/photos/279647/pexels-photo-279647.jpeg",
     "price": 35
   },
   {
     "id": 4,
     "name": "Grey Brim",
-    "imageUrl": "https://i.ibb.co/RjBLWxB/grey-brim.png",
+    "imageUrl": "https://images.pexels.com/photos/984619/pexels-photo-984619.jpeg",
     "price": 25
   },
   {
     "id": 5,
     "name": "Green Beanie",
-    "imageUrl": "https://i.ibb.co/YTjW3vF/green-beanie.png",
+    "imageUrl": "https://images.pexels.com/photos/1460838/pexels-photo-1460838.jpeg",
     "price": 18
   },
   {
     "id": 6,
     "name": "Palm Tree Cap",
-    "imageUrl": "https://i.ibb.co/rKBDvJX/palm-tree-cap.png",
+    "imageUrl": "https://images.pexels.com/photos/1001851/pexels-photo-1001851.jpeg",
     "price": 14
   },
   {
     "id": 7,
     "name": "Red Beanie",
-    "imageUrl": "https://i.ibb.co/bLB646Z/red-beanie.png",
+    "imageUrl": "https://images.pexels.com/photos/26956137/pexels-photo-26956137.jpeg",
     "price": 18
   },
   {
     "id": 8,
     "name": "Wolf Cap",
-    "imageUrl": "https://i.ibb.co/1f2nWMM/wolf-cap.png",
+    "imageUrl": "https://images.pexels.com/photos/18545451/pexels-photo-18545451.jpeg",
     "price": 14
   },
   {
     "id": 9,
     "name": "Blue Snapback",
-    "imageUrl": "https://i.ibb.co/X2VJP2W/blue-snapback.png",
+    "imageUrl": "https://images.pexels.com/photos/21820217/pexels-photo-21820217.jpeg",
     "price": 16
   }
 ]
