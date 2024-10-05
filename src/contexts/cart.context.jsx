@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const addItemInCartArray = (cartItems, productToAdd) => {
   const newCartItems = structuredClone(cartItems);
@@ -25,17 +25,28 @@ export const CartContext = createContext({
   addItemToCart: () => null,
   active: false,
   setActive: () => null,
+  cartCount: 0,
+  setCartCount: () => null,
 });
 
 export const CartProvider = ({ children }) => {
   const [active, setActive] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const itemsQuantity = cartItems.reduce(
+      (total, currentItem) => (total += currentItem.quantity),
+      0
+    );
+    setCartCount(itemsQuantity);
+  }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addItemInCartArray(cartItems, productToAdd));
   };
 
-  const value = { active, setActive, cartItems, addItemToCart };
+  const value = { active, setActive, cartItems, addItemToCart, cartCount };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
