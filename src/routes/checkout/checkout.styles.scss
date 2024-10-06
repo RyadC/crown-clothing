@@ -1,0 +1,29 @@
+.items-list-container {
+  width: 70vw;
+}
+
+img {
+  width: 200px;
+}
+
+.item-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.addOne {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.removeOne {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.remove-icon {
+  cursor: pointer;
+}

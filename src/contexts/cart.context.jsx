@@ -20,6 +20,47 @@ const addItemInCartArray = (cartItems, productToAdd) => {
   return newCartItems;
 };
 
+const increaseQuantityOfItem = (cartItems, product) => {
+  const newCartItems = structuredClone(cartItems);
+
+  // Find product
+  const foundedIndex = newCartItems.findIndex(
+    (cartItem) => cartItem.id === product.id
+  );
+
+  newCartItems[foundedIndex].quantity++;
+
+  return newCartItems;
+};
+
+const decreaseQuantityOfItem = (cartItems, product) => {
+  const newCartItems = structuredClone(cartItems);
+
+  // Find product
+  const foundedIndex = newCartItems.findIndex(
+    (cartItem) => cartItem.id === product.id
+  );
+
+  if (newCartItems[foundedIndex].quantity !== 0) {
+    newCartItems[foundedIndex].quantity--;
+  }
+
+  return newCartItems;
+};
+
+const removeItem = (cartItems, product) => {
+  const newCartItems = structuredClone(cartItems);
+
+  // Find product
+  const foundedIndex = newCartItems.findIndex(
+    (cartItem) => cartItem.id === product.id
+  );
+
+  newCartItems.splice(foundedIndex, 1);
+
+  return newCartItems;
+};
+
 export const CartContext = createContext({
   cartItems: [],
   addItemToCart: () => null,
@@ -27,6 +68,9 @@ export const CartContext = createContext({
   setActive: () => null,
   cartCount: 0,
   setCartCount: () => null,
+  increaseItemToCart: () => null,
+  decreaseItemToCart: () => null,
+  removeItemFromCart: () => null,
 });
 
 export const CartProvider = ({ children }) => {
@@ -46,7 +90,28 @@ export const CartProvider = ({ children }) => {
     setCartItems(addItemInCartArray(cartItems, productToAdd));
   };
 
-  const value = { active, setActive, cartItems, addItemToCart, cartCount };
+  const increaseItemToCart = (product) => {
+    setCartItems(increaseQuantityOfItem(cartItems, product));
+  };
+
+  const decreaseItemToCart = (product) => {
+    setCartItems(decreaseQuantityOfItem(cartItems, product));
+  };
+
+  const removeItemFromCart = (product) => {
+    setCartItems(removeItem(cartItems, product));
+  };
+
+  const value = {
+    active,
+    setActive,
+    cartItems,
+    addItemToCart,
+    cartCount,
+    increaseItemToCart,
+    decreaseItemToCart,
+    removeItemFromCart,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
