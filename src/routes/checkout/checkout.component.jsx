@@ -1,48 +1,37 @@
 import { useContext } from "react";
+
 import { CartContext } from "../../contexts/cart.context";
+
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
 import "./checkout.styles.scss";
 
 const Checkout = () => {
-  const {
-    cartItems,
-    increaseItemToCart,
-    decreaseItemToCart,
-    removeItemFromCart,
-  } = useContext(CartContext);
+  const { cartItems, cartTotal } = useContext(CartContext);
 
   return (
-    <div className="items-list-container">
-      {cartItems.map((item) => (
-        <div key={item.id} className="item-container">
-          <img src={item.imageUrl} alt={item.name} />
-          <span>{item.name}</span>
-          <div className="quantity-container">
-            <span className="addOne" onClick={() => decreaseItemToCart(item)}>
-              {"<"}
-            </span>
-            <span className="quantity">{item.quantity}</span>
-            <span
-              className="removeOne"
-              onClick={() => increaseItemToCart(item)}
-            >
-              {">"}
-            </span>
-          </div>
-          <span>{item.price}</span>
-          <span
-            className="remove-icon"
-            onClick={() => removeItemFromCart(item)}
-          >
-            X
-          </span>
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-block">
+          <span>Article</span>
         </div>
-      ))}
-      <div>
-        {cartItems.reduce((total, item) => {
-          return (total += item.quantity * item.price);
-        }, 0)}
+        <div className="header-block">
+          <span>Description</span>
+        </div>
+        <div className="header-block">
+          <span>Quantité</span>
+        </div>
+        <div className="header-block">
+          <span>Prix</span>
+        </div>
+        <div className="header-block">
+          <span>Supprimer</span>
+        </div>
       </div>
+      {cartItems.map((cartItem) => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      ))}
+      <div className="total">TOTAL: {cartTotal}€</div>
     </div>
   );
 };
