@@ -1,5 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Directory from "../../components/directory/directory.component";
+import { useEffect } from "react";
+import insertShopDataInDB from "../../utils/firebase/firebase.transaction";
+import { db } from "../../utils/firebase/firebase.utils";
+import SHOP_DATA from "../../data/shop-data";
 
 const Home = () => {
   const categories = [
@@ -34,6 +38,10 @@ const Home = () => {
         "https://images.pexels.com/photos/1549004/pexels-photo-1549004.jpeg",
     },
   ];
+
+  useEffect(() => {
+    insertShopDataInDB(db, "categories", SHOP_DATA);
+  }, []);
 
   return (
     <div>
