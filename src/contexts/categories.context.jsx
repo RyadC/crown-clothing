@@ -13,9 +13,7 @@ export const CategoriesProvider = ({ children }) => {
   useEffect(() => {
     const getCategories = async () => {
       const categoriesDocs = await getCollectionsAndDocuments(db, "categories");
-      console.log(categoriesDocs);
-      setCategories([categoriesDocs]);
-      // return categories;
+      setCategories(categoriesDocs);
     };
     getCategories();
   }, []);
