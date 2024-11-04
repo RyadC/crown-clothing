@@ -8,9 +8,6 @@ const Category = () => {
   const { shopCategory } = useParams();
   const { categories } = useContext(CategoriesContext);
   const [products, setProducts] = useState(categories[shopCategory]);
-  // console.log(shopCategory);
-  // console.log(products);
-  // console.log(categories);
 
   useEffect(() => {
     setProducts(categories[shopCategory]);
@@ -20,7 +17,7 @@ const Category = () => {
     <>
       {products && (
         <>
-          <h1>{shopCategory}</h1>
+          <h1 className="category-title">{shopCategory}</h1>
           <div className="category-container">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
