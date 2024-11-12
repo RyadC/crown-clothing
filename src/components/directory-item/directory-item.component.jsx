@@ -9,11 +9,7 @@ const DirectoryItem = ({ category }) => {
   const { imageUrl, title } = category;
   return (
     <DIV_DirectoryItemContainer>
-      <DIV_BackgroundImage
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
+      <DIV_BackgroundImage imageurl={imageUrl} />
       <DIV_DirectoryItemBodyContainer>
         <h2>{title}</h2>
         <p>Shop Now</p>

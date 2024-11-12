@@ -1,8 +1,25 @@
 import { styled } from "styled-components";
 
-export const DIV_BackgroundImage = styled.div``;
+export const DIV_BackgroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: ${(props) => `url(${props.imageurl})`};
+`;
 
-export const DIV_DirectoryItemBodyContainer = styled.div``;
+export const DIV_DirectoryItemBodyContainer = styled.div`
+  height: 90px;
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  background-color: white;
+  opacity: 0.7;
+  position: absolute;
+`;
 
 export const DIV_DirectoryItemContainer = styled.div`
   min-width: 30%;
@@ -15,26 +32,6 @@ export const DIV_DirectoryItemContainer = styled.div`
   margin: 0 7.5px 15px;
   overflow: hidden;
 
-  ${DIV_BackgroundImage} {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-  }
-
-  ${DIV_DirectoryItemBodyContainer} {
-    height: 90px;
-    padding: 0 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-    background-color: white;
-    opacity: 0.7;
-    position: absolute;
-  }
-
   &:hover {
     cursor: pointer;
 
@@ -46,10 +43,6 @@ export const DIV_DirectoryItemContainer = styled.div`
     & ${DIV_DirectoryItemBodyContainer} {
       opacity: 0.9;
     }
-  }
-
-  &.large {
-    height: 380px;
   }
 
   &:first-child {
