@@ -2,16 +2,15 @@ import { useContext, useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component.jsx";
+import { DIV_ButtonsContainer } from "./sign-in-form.styles.jsx";
+
+import { UserContext } from "../../contexts/user.context.jsx";
 
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils.js";
-
-import { UserContext } from "../../contexts/user.context.jsx";
-
-import "./sign-in.styles.scss";
 
 const defaultFormFields = {
   email: "",
@@ -66,7 +65,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <div className="sign-in-container">
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
@@ -94,7 +93,7 @@ const SignInForm = () => {
             required: true,
           }}
         />
-        <div className="buttons-container">
+        <DIV_ButtonsContainer>
           <Button type="submit">Sign In</Button>
           <Button
             type="button"
@@ -103,7 +102,7 @@ const SignInForm = () => {
           >
             Sign In with Google
           </Button>
-        </div>
+        </DIV_ButtonsContainer>
       </form>
     </div>
   );
