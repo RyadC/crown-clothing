@@ -1,4 +1,4 @@
-import "./directory-item.styles.jsx";
+import { useNavigate } from "react-router-dom";
 import {
   DIV_BackgroundImage,
   DIV_DirectoryItemBodyContainer,
@@ -6,9 +6,16 @@ import {
 } from "./directory-item.styles.jsx";
 
 const DirectoryItem = ({ category }) => {
+  const navigate = useNavigate();
+
+  const goToCategoryPageHandler = (category) => {
+    navigate(`shop/${category.toLowerCase()}`);
+  };
+
   const { imageUrl, title } = category;
+
   return (
-    <DIV_DirectoryItemContainer>
+    <DIV_DirectoryItemContainer onClick={() => goToCategoryPageHandler(title)}>
       <DIV_BackgroundImage imageurl={imageUrl} />
       <DIV_DirectoryItemBodyContainer>
         <h2>{title}</h2>
