@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const addItemInCartArray = (cartItems, productToAdd) => {
   const newCartItems = structuredClone(cartItems);
@@ -53,11 +53,44 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
+const CART_ACTION_TYPES = {
+  SET_CART_IS_ACTIVE: "SET_CART_IS_OPEN",
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CART_ACTION_TYPES.SET_CART_IS_ACTIVE:
+      return {
+        ...state,
+        active: !state.active,
+      };
+
+    default:
+      throw new Error(`unhandled action type ${type}`);
+  }
+};
+
+const INITIAL_STATE = {
+  active: false,
+  cartItems: [],
+  cartCount: 0,
+  cartTotal: 0,
+};
+
 export const CartProvider = ({ children }) => {
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+
+  const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+  const { active } = state;
+
+  const setActive = () => {
+    dispatch({ type: CART_ACTION_TYPES.SET_CART_IS_ACTIVE });
+  };
 
   useEffect(() => {
     const itemsQuantity = cartItems.reduce(
