@@ -57,6 +57,7 @@ const CART_ACTION_TYPES = {
   SET_CART_IS_ACTIVE: "SET_CART_IS_OPEN",
   SET_CART_COUNT: "SET_CART_COUNT",
   SET_CART_TOTAL: "SET_CART_TOTAL",
+  SET_CART_ITEMS: "SET_CART_ITEMS",
 };
 
 const cartReducer = (state, action) => {
@@ -81,8 +82,14 @@ const cartReducer = (state, action) => {
         cartTotal: payload,
       };
 
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
+      return {
+        ...state,
+        cartItems: payload,
+      };
+
     default:
-      throw new Error(`unhandled action type ${type}`);
+      throw new Error(`Unhandled action type ${type}`);
   }
 };
 
@@ -95,12 +102,12 @@ const INITIAL_STATE = {
 
 export const CartProvider = ({ children }) => {
   // const [active, setActive] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
   // const [cartCount, setCartCount] = useState(0);
   // const [cartTotal, setCartTotal] = useState(0);
 
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
-  const { active, cartCount, cartTotal } = state;
+  const { active, cartCount, cartTotal, cartItems } = state;
 
   const setActive = () => {
     dispatch({ type: CART_ACTION_TYPES.SET_CART_IS_ACTIVE });
@@ -115,6 +122,10 @@ export const CartProvider = ({ children }) => {
 
   const setCartTotal = (newCartTotal) => {
     dispatch({ type: CART_ACTION_TYPES.SET_CART_TOTAL, payload: newCartTotal });
+  };
+
+  const setCartItems = (newCartItems) => {
+    dispatch({ type: CART_ACTION_TYPES.SET_CART_ITEMS, payload: newCartItems });
   };
 
   useEffect(() => {
