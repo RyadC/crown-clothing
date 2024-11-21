@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
+import { createAction } from "../utils/reducer/reducer.utils";
 
 const addItemInCartArray = (cartItems, productToAdd) => {
-  console.log("au début du traitement de l'ajout", cartItems);
   const newCartItems = structuredClone(cartItems);
 
   // Find if product already exist
@@ -18,7 +18,6 @@ const addItemInCartArray = (cartItems, productToAdd) => {
     newCartItems.push(newItem);
   }
 
-  console.log("à la fin du traitement de l'ajout", newCartItems);
   return newCartItems;
 };
 
@@ -110,7 +109,7 @@ export const CartProvider = ({ children }) => {
   const { active, cartCount, cartTotal, cartItems } = state;
 
   const setActive = () => {
-    dispatch({ type: CART_ACTION_TYPES.SET_CART_IS_ACTIVE });
+    dispatch(createAction(CART_ACTION_TYPES.SET_CART_IS_ACTIVE));
   };
 
   const setCartItems = (newCartItems) => {
@@ -125,16 +124,13 @@ export const CartProvider = ({ children }) => {
       0
     );
 
-    console.log("Juste avant le dispatch", newCartItems);
-
-    dispatch({
-      type: CART_ACTION_TYPES.SET_CART_ITEMS,
-      payload: {
+    dispatch(
+      createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
         cartItems: newCartItems,
         cartTotal: newCartTotal,
         cartCount: newItemsQuantity,
-      },
-    });
+      })
+    );
   };
 
   const addItemToCart = (productToAdd) => {
