@@ -55,6 +55,7 @@ export const CartContext = createContext({
 
 const CART_ACTION_TYPES = {
   SET_CART_IS_ACTIVE: "SET_CART_IS_OPEN",
+  SET_CART_COUNT: "SET_CART_COUNT",
 };
 
 const cartReducer = (state, action) => {
@@ -65,6 +66,12 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         active: !state.active,
+      };
+
+    case CART_ACTION_TYPES.SET_CART_COUNT:
+      return {
+        ...state,
+        cartCount: payload,
       };
 
     default:
@@ -82,14 +89,21 @@ const INITIAL_STATE = {
 export const CartProvider = ({ children }) => {
   // const [active, setActive] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
+  // const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
 
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
-  const { active } = state;
+  const { active, cartCount } = state;
 
   const setActive = () => {
     dispatch({ type: CART_ACTION_TYPES.SET_CART_IS_ACTIVE });
+  };
+
+  const setCartCount = (itemsQuantity) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_CART_COUNT,
+      payload: itemsQuantity,
+    });
   };
 
   useEffect(() => {
