@@ -7,6 +7,8 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 
+import { useSelector } from "react-redux";
+
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import {
@@ -15,11 +17,12 @@ import {
   LINK_LogoContainer,
   LINK_NavLink,
 } from "./navigation.styles";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 // import "./navigation.styles.scss";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { active } = useContext(CartContext);
 
   const signOutHandler = async () => {
