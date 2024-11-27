@@ -31,11 +31,5 @@ export async function getCollectionsAndDocuments(db, collectionKey) {
   const collectionRef = collection(db, collectionKey);
   const querySnapshot = await getDocs(collectionRef);
 
-  const categoriesMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoriesMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 }
