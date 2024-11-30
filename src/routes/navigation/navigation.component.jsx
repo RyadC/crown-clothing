@@ -18,12 +18,14 @@ import {
   LINK_NavLink,
 } from "./navigation.styles";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCartActive } from "../../store/cart/cart.selector";
 
 // import "./navigation.styles.scss";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { active } = useContext(CartContext);
+  // const { active } = useContext(CartContext);
+  const active = useSelector(selectCartActive);
 
   const signOutHandler = async () => {
     await signOutUser();

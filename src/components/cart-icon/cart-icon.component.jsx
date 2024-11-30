@@ -5,12 +5,23 @@ import {
   SHOPPINGICON_ShoppingIcon,
   SPAN_ItemCount,
 } from "./cart-icon.styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartActive,
+  selectCartCount,
+} from "../../store/cart/cart.selector";
+import { setCartActiveAction } from "../../store/cart/cart.action";
 
 const CartIcon = () => {
-  const { active, setActive, cartCount } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const active = useSelector(selectCartActive);
+  const cartCount = useSelector(selectCartCount);
+
+  console.log(active);
 
   const openDropdownHandler = () => {
-    setActive(!active);
+    dispatch(setCartActiveAction(!active));
   };
 
   return (
