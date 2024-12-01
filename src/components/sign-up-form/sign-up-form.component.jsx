@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import { UserContext } from "../../contexts/user.context";
+
 import { DIV_SignUpContainer } from "./sign-up-form.styles";
 
 const defaultFormFields = {
@@ -17,8 +19,6 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-
-  const { setCurrentUser } = useContext(UserContext);
 
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -46,7 +46,6 @@ const SignUpForm = () => {
         displayName,
       });
 
-      // setCurrentUser(user);
       setFormFields(...defaultFormFields);
     } catch (error) {
       console.error("saving user failed:", error.code, error.message);

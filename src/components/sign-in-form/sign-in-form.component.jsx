@@ -1,16 +1,15 @@
-import { useContext, useState } from "react";
-
-import FormInput from "../form-input/form-input.component";
-import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component.jsx";
-import { DIV_ButtonsContainer } from "./sign-in-form.styles.jsx";
-
-import { UserContext } from "../../contexts/user.context.jsx";
+import { useState } from "react";
 
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils.js";
+
+import FormInput from "../form-input/form-input.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component.jsx";
+
+import { DIV_ButtonsContainer } from "./sign-in-form.styles.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -19,7 +18,6 @@ const defaultFormFields = {
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { setCurrentUser } = useContext(UserContext);
 
   const { email, password } = formFields;
 
@@ -42,7 +40,6 @@ const SignInForm = () => {
         password
       );
 
-      // setCurrentUser(user);
       setFormFields({ ...defaultFormFields });
 
       const userDocRefInst = await createUserDocumentFromAuth(user);

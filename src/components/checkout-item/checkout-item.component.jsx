@@ -24,9 +24,6 @@ const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   const cartItems = useSelector(selectCartItems);
 
-  // const { clearItemFromCart, addItemToCart, removeItemFromCart } =
-  // useContext(CartContext);
-
   const clearItemHandler = () =>
     dispatch(clearItemFromCart(cartItems, cartItem));
   const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));

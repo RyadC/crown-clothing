@@ -1,30 +1,26 @@
-import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import { Fragment, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
-import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
-
-import { useSelector } from "react-redux";
+import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectCartActive } from "../../store/cart/cart.selector";
+
 import {
   DIV_NavigationContainer,
   DIV_NavLinksContainer,
   LINK_LogoContainer,
   LINK_NavLink,
 } from "./navigation.styles";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectCartActive } from "../../store/cart/cart.selector";
-
-// import "./navigation.styles.scss";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  // const { active } = useContext(CartContext);
   const active = useSelector(selectCartActive);
 
   const signOutHandler = async () => {
