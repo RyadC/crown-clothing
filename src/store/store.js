@@ -2,6 +2,7 @@ import { compose, createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // default to localStorage for web
+import { thunk } from "redux-thunk";
 
 import { rootReducer } from "./root-reducer";
 
@@ -13,9 +14,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middlewares = [process.env.NODE_ENV !== "production " && logger].filter(
-  Boolean
-); // We log only in a development environment. filter inject the value if is a truthy value in a shallow copy. Boolean is a class that takes "true" or "false" as argument. So without bracket, he take the current value of the array.
+const middlewares = [
+  process.env.NODE_ENV !== "production " && logger,
+  thunk,
+].filter(Boolean); // We log only in a development environment. filter inject the value if is a truthy value in a shallow copy. Boolean is a class that takes "true" or "false" as argument. So without bracket, he take the current value of the array.
 
 const composedEnhancer =
   (process.env.NODE_ENV !== "production" &&

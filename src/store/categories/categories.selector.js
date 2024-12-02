@@ -3,6 +3,11 @@ import { createSelector } from "reselect";
 // We recover the categories reducer
 const selectCategoriesReducer = (state) => state.categories;
 
+export const selectIsLoading = createSelector(
+  [selectCategoriesReducer],
+  (categoriesReducer) => categoriesReducer.isLoading
+);
+
 // If the category reducer (this is an object) change, we recover the category datas
 export const selectCategories = createSelector(
   [selectCategoriesReducer],
