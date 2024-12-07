@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 // We recover the categories reducer
 const selectCategoriesReducer = (state) => state.categories;
 
-export const selectIsLoading = createSelector(
+export const selectCategoriesIsLoading = createSelector(
   [selectCategoriesReducer],
   (categoriesReducer) => categoriesReducer.isLoading
 );

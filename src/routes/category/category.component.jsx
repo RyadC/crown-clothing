@@ -7,7 +7,7 @@ import ProductCard from "../../components/product-card/product-card.component";
 import {
   selectCategories,
   selectCategoriesMap,
-  selectIsLoading,
+  selectCategoriesIsLoading,
 } from "../../store/categories/categories.selector.js";
 
 import { DIV_CategoryContainer, H1_CategoryTitle } from "./category.styles.jsx";
@@ -16,7 +16,7 @@ import Spinner from "../../components/spinner/spinner.component.jsx";
 const Category = () => {
   const { shopCategory } = useParams();
   const categories = useSelector(selectCategoriesMap);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState(categories[shopCategory]);
 
   useEffect(() => {
